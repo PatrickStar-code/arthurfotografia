@@ -1,16 +1,16 @@
-"use client";
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+'use client'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   return (
-    <nav className="bg-transparent  p-4 sticky top-0 z-50">
+    <nav className=" bg-white p-4 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex justify-between items-center h-16">
           {/* Ícone Hamburguer à esquerda */}
@@ -57,7 +57,9 @@ export default function Navbar() {
                   x2="21"
                   y2="18"
                   initial={{ rotate: 0, y: 0 }}
-                  animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                  animate={
+                    isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }
+                  }
                   transition={{ duration: 0.3 }}
                 />
               </motion.svg>
@@ -70,12 +72,13 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Menu */}
+      {/* Menu com position: fixed */}
       <motion.div
         initial={{ height: 0, opacity: 0 }}
         animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
         transition={{ duration: 0.5, ease: 'easeInOut' }}
-        className="overflow-hidden"
+        className={`fixed top-16 left-0 w-full bg-white z-40 ${isOpen ? 'block' : 'hidden'}`}
+        style={{ overflow: 'hidden' }}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
           <a
@@ -99,5 +102,5 @@ export default function Navbar() {
         </div>
       </motion.div>
     </nav>
-  );
+  )
 }

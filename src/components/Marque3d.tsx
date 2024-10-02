@@ -1,5 +1,6 @@
 'use client'
 import Marquee from '@/components/magicui/marquee'
+import Image from 'next/image'
 
 const logos = [
   {
@@ -53,10 +54,12 @@ export function Marquee3D() {
               <div className="absolute top-1/2 left-[-12px] w-4 h-4 bg-black border-2 border-white rounded-full"></div>
               <div className="absolute top-1/2 right-[-12px] w-4 h-4 bg-black border-2 border-white rounded-full"></div>
 
-              <img
+              <Image
                 src={data.img}
                 alt={data.name}
                 className="w-full h-full object-cover rounded-lg"
+                width={220}
+                height={150}
               />
             </div>
           ))}

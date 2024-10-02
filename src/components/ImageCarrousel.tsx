@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, DotIcon } from 'lucide-react'
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 export default function ImageCarrousel({ Images }: { Images: string[] }) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -25,10 +26,12 @@ export default function ImageCarrousel({ Images }: { Images: string[] }) {
         >
           {Images.map((image, index) => (
             <motion.div key={index} className="p-2 min-w-[30rem] h-[20rem]">
-              <img
+              <Image
                 src={image}
                 alt="Slide"
                 className="w-full h-full object-cover rounded"
+                width={320}
+                height={320}
               />
             </motion.div>
           ))}

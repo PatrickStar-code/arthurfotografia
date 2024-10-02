@@ -5,24 +5,22 @@ import {
   motion,
   useAnimationFrame,
   useMotionValue,
-  useScroll,
   useSpring,
   useTransform,
-  useVelocity,
 } from 'framer-motion'
 
 import { cn } from '@/lib/utils'
 
 interface VelocityScrollProps {
-  text: string
-  default_velocity?: number
-  className?: string
+  text: string // Tornar obrigatório
+  defaultVelocity?: number // Pode ser undefined
+  className?: string // Pode ser undefined
 }
 
 interface ParallaxProps {
-  children: string
-  baseVelocity: number
-  className?: string
+  children: string // Tornar obrigatório
+  baseVelocity: number // Tornar obrigatório
+  className?: string // Pode ser undefined
 }
 
 export const wrap = (min: number, max: number, v: number) => {
@@ -32,13 +30,13 @@ export const wrap = (min: number, max: number, v: number) => {
 
 export function VelocityScroll({
   text,
-  default_velocity = 5,
-  className,
+  defaultVelocity = 5,
+  className = '', // Valor padrão para evitar undefined
 }: VelocityScrollProps) {
   function ParallaxText({
     children,
     baseVelocity = 100,
-    className,
+    className = '', // Valor padrão para evitar undefined
   }: ParallaxProps) {
     const baseX = useMotionValue(0)
     const smoothVelocity = useSpring(0, {
@@ -105,10 +103,10 @@ export function VelocityScroll({
 
   return (
     <section className="relative w-full">
-      <ParallaxText baseVelocity={default_velocity} className={className}>
+      <ParallaxText baseVelocity={defaultVelocity} className={className}>
         {text}
       </ParallaxText>
-      <ParallaxText baseVelocity={-default_velocity} className={className}>
+      <ParallaxText baseVelocity={-defaultVelocity} className={className}>
         {text}
       </ParallaxText>
     </section>

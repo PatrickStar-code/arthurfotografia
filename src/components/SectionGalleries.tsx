@@ -1,7 +1,7 @@
-import { Gallery } from '@/app/page'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Gallery } from '@/app/(Home)/page'
 
 export default function SectionGalleries({
   galleries,
@@ -9,7 +9,7 @@ export default function SectionGalleries({
   galleries: Gallery[]
 }) {
   return (
-    <section className="grid grid-cols-1 md:grid-cols-3 gap-6 p-8">
+    <section className="grid grid-cols-2 md:grid-cols-3 gap-6 p-8">
       {galleries.map((gallery) => {
         // Verifica se a galeria possui uma imagem antes de renderizar
         if (!gallery || !gallery.image) {

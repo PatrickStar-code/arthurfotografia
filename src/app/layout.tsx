@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
-import Navbar from '@/components/Navbar'
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
   variable: '--font-geist-sans',
@@ -24,14 +23,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-br" className="overflow-x-hidden scroll-smooth">
+    <html lang="pt-br">
       <head>
         <link rel="shortcut icon" href="/imgs/camera.png" type="image/x-icon" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden scroll-smooth`}
       >
-        <Navbar />
         {children}
       </body>
     </html>

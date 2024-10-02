@@ -35,7 +35,7 @@ export default function ImageCarrousel({ Images }: { Images: string[] }) {
   }
 
   return (
-    <div className="flex items-center justify-center h-[31.25rem] md:h-[40rem] relative">
+    <div className="flex overflow-hidden items-center justify-center h-[31.25rem] md:h-[40rem] relative">
       <div className="absolute left-0 z-10">
         <button
           className="text-white bg-indigo-400 rounded-full p-2 hover:bg-indigo-500"

@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <>
       {/* Container principal */}
-      <main className="py-16 bg-white">
+      <main className="py-16 bg-white overflow-x-hidden">
         <div className="container m-auto px-6 space-y-8 text-gray-500 md:px-12 lg:px-20">
           <div className="flex flex-col justify-center items-start gap-6 md:flex-row md:items-center lg:gap-16 relative">
             {/* Container da imagem com animação */}

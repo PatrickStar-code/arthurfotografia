@@ -31,7 +31,7 @@ const logos = [
 
 export function Marquee3D() {
   return (
-    <div className="relative -left-16 flex h-full w-96 flex-col items-center justify-center gap-4 overflow-hidden px-20">
+    <div className="relative -left-16  md:left-0 flex h-full w-96 flex-col items-center justify-center gap-4 overflow-hidden px-20">
       <div className="flex flex-row gap-4 [perspective:300px]">
         <Marquee
           className="h-96 justify-center overflow-hidden [--duration:60s] [--gap:1rem]"
@@ -44,7 +44,7 @@ export function Marquee3D() {
           {logos.map((data, idx) => (
             <div
               key={idx}
-              className="relative flex w-[120px] h-[90px] lg:w-[220px] lg:h-[150px] bg-transparent rounded-lg border-4 border-black shadow-xl mb-4"
+              className="relative flex w-[120px] h-[90px] lg:w-[220px] lg:h-[200px] bg-transparent rounded-lg border-4 border-black shadow-xl mb-4"
               style={{
                 clipPath:
                   'polygon(10% 0%, 90% 0%, 100% 15%, 100% 85%, 90% 100%, 10% 100%, 0% 85%, 0% 15%)',

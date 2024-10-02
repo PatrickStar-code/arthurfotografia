@@ -1,58 +1,74 @@
-'use client'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight, DotIcon } from 'lucide-react'
-import React, { useState } from 'react'
-import Image from 'next/image'
+import { ArrowLeft, ArrowRight } from 'lucide-react' // Importe os ícones
 
 export default function ImageCarrousel({ Images }: { Images: string[] }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [positionIndexes, setPositionIndexes] = useState([0, 1, 2, 3, 4])
 
-  function prevSlide() {
-    setCurrentIndex((prev) => (prev === 0 ? Images.length - 1 : prev - 1))
+  const handleNext = () => {
+    setPositionIndexes((prevIndexes) => {
+      const updatedIndexes = prevIndexes.map(
+        (prevIndex) => (prevIndex + 1) % Images.length, // Altere o tamanho para o número de imagens
+      )
+      return updatedIndexes
+    })
   }
 
-  function nextSlide() {
-    setCurrentIndex((prev) => (prev === Images.length - 1 ? 0 : prev + 1))
+  const handleBack = () => {
+    setPositionIndexes((prevIndexes) => {
+      const updatedIndexes = prevIndexes.map(
+        (prevIndex) => (prevIndex + Images.length - 1) % Images.length, // Altere o tamanho para o número de imagens
+      )
+
+      return updatedIndexes
+    })
+  }
+
+  const positions = ['center', 'left1', 'left', 'right', 'right1']
+
+  const imageVariants = {
+    center: { x: '0%', scale: 1, zIndex: 5, opacity: 1 },
+    left1: { x: '-50%', scale: 0.7, zIndex: 3, opacity: 0.5 },
+    left: { x: '-90%', scale: 0.5, zIndex: 2, opacity: 0.3 },
+    right: { x: '90%', scale: 0.5, zIndex: 1, opacity: 0.3 },
+    right1: { x: '50%', scale: 0.7, zIndex: 3, opacity: 0.5 },
   }
 
   return (
-    <div className="relative flex flex-col items-center py-20">
-      <div className="overflow-hidden w-[90rem] h-[20rem]">
-        <motion.div
-          className="flex"
-          initial={{ x: 0 }}
-          animate={{ x: -currentIndex * 320 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+    <div className="flex items-center justify-center h-[31.25rem] md:h-[40rem] relative">
+      <div className="absolute left-0 z-10">
+        <button
+          className="text-white bg-indigo-400 rounded-full p-2 hover:bg-indigo-500"
+          onClick={handleBack}
         >
-          {Images.map((image, index) => (
-            <motion.div key={index} className="p-2 min-w-[30rem] h-[20rem]">
-              <Image
-                src={image}
-                alt="Slide"
-                className="w-full h-full object-cover rounded"
-                width={320}
-                height={320}
-              />
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-      <div className="flex flew-row w-full justify-between mt-6">
-        <button className=" bg-gray-100 text-black rounded-full shadow transition-all hover:opacity-70 p-3">
-          <ArrowLeft onClick={prevSlide} />
+          <ArrowLeft size={24} />
         </button>
-        <div className="flex flex-row gap-1">
-          {Images.map((_, index) => (
-            <DotIcon
-              key={index}
-              className={`cursor-pointer text-2xl ${index === currentIndex ? 'text-gray-800' : 'text-gray-500'}`}
-              onClick={() => setCurrentIndex(index)}
-            />
-          ))}
-        </div>
+      </div>
 
-        <button className="bg-gray-100 text-black rounded-full shadow transition-all hover:opacity-70 p-3">
-          <ArrowRight onClick={nextSlide} />
+      {Images.length > 0 ? ( // Verifique se o array de imagens não está vazio
+        Images.map((image, index) => (
+          <motion.img
+            key={index}
+            src={image} // Renderiza a imagem diretamente
+            alt={`Image ${index + 1}`} // Texto alt para acessibilidade
+            className="  w-[80%] md:w-[40%]" // Torna a imagem redonda e ajusta o tamanho
+            initial="center"
+            animate={positions[positionIndexes[index]]}
+            variants={imageVariants}
+            transition={{ duration: 0.5 }}
+            style={{ position: 'absolute' }}
+          />
+        ))
+      ) : (
+        <p className="text-white">No Images available.</p> // Mensagem se não houver imagens
+      )}
+
+      <div className="absolute right-0 z-10">
+        <button
+          className="text-white bg-indigo-400 rounded-full p-2 hover:bg-indigo-500"
+          onClick={handleNext}
+        >
+          <ArrowRight size={24} />
         </button>
       </div>
     </div>

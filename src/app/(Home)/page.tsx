@@ -7,6 +7,7 @@ import { Marquee3D } from '@/components/Marque3d'
 import ImageCarrousel from '@/components/ImageCarrousel'
 import SectionGalleries from '@/components/SectionGalleries'
 import Form from '@/components/Form'
+import { Marquee2d } from '@/components/marque2d'
 
 export interface Gallery {
   id: number
@@ -105,6 +106,20 @@ export default function Home() {
       >
         <ImageCarrousel Images={Images} />
       </motion.section>
+      {/* Reviews */}
+      <motion.section
+        className="flex justify-center text-center flex-col gap-8 mt-12"
+        initial={{ opacity: 0, y: 100 }} // Inicialmente fora da tela
+        whileInView={{ opacity: 1, y: 0 }} // Animação ocorre quando entra na viewport
+        viewport={{ once: true, amount: 0.2 }} // A animação só acontece uma vez, 20% visível
+        transition={{ duration: 0.6 }}
+      >
+        <WordPullUp
+          className="text-4xl font-bold tracking-[-0.02em] text-black dark:text-white md:text-7xl md:leading-[5rem]"
+          words="Reviews"
+        />
+        <Marquee2d />
+      </motion.section>
       <motion.section
         className="flex justify-center text-center flex-col gap-8"
         initial={{ opacity: 0, y: 100 }} // Inicialmente fora da tela
@@ -118,6 +133,7 @@ export default function Home() {
         />
         <SectionGalleries galleries={galleriesData} />
       </motion.section>
+
       <Form />
     </>
   )

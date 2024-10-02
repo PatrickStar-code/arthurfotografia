@@ -37,21 +37,21 @@ export default function ContatoAnimado() {
       >
         <motion.div
           whileHover={{ scale: 1.1 }}
-          className="p-4 bg-green-500 text-white shadow-lg"
+          className="p-4 bg-green-500 text-white shadow-lg cursor-pointer"
         >
           <FaWhatsapp size={60} />
         </motion.div>
 
         <motion.div
           whileHover={{ scale: 1.1 }}
-          className="p-4 bg-pink-500 text-white  shadow-lg"
+          className="p-4 bg-pink-500 text-white  shadow-lg cursor-pointer"
         >
           <FaInstagram size={60} />
         </motion.div>
 
         <motion.div
           whileHover={{ scale: 1.1 }}
-          className="p-4 bg-blue-600 text-white  shadow-lg"
+          className="p-4 bg-blue-600 text-white  shadow-lg cursor-pointer"
         >
           <FaFacebook size={60} />
         </motion.div>

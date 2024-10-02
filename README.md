@@ -20,11 +20,10 @@ Este projeto foi criado para testar as funcionalidades da biblioteca **Framer Mo
   Um visualizador de imagens que permite ampliar imagens e navegar entre elas.
 
 
-- *
 
 ## Descrição do Projeto
 
-Este projeto é baseado no projeto **LandingPageARTHUR**, onde foram implementadas animações utilizando Framer Motion para demonstrar suas capacidades. O objetivo é explorar como as animações podem melhorar a usabilidade e a experiência do usuário em uma aplicação web.
+Este projeto é baseado no projeto **LandingPage_Arthur**, onde foram implementadas animações utilizando Framer Motion para demonstrar suas capacidades. O objetivo é explorar como as animações podem melhorar a usabilidade e a experiência do usuário em uma aplicação web.
 
 ## Instalação
 

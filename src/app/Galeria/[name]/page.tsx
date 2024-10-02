@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Viewer from 'react-viewer'
+import { motion } from 'framer-motion'
 
 const images = Array.from({ length: 9 }, (_, i) => {
   const isLandscape = i % 2 === 0
@@ -29,7 +30,12 @@ export default function GalleriesImages() {
   return (
     <>
       <section id="photos" className="p-8 container relative z-0">
-        <div className="columns-2 gap-4 sm:columns-3">
+        <motion.div
+          className="columns-2 gap-4 sm:columns-3"
+          whileInView={{ opacity: 1, y: 0 }} // Animação ocorre quando entra na viewport
+          viewport={{ once: true, amount: 0.2 }} // A animação só acontece uma vez, 20% visível
+          transition={{ duration: 0.6 }}
+        >
           {images.map((imageUrl, idx) => (
             <div
               className="relative group p-2 hover:transition-shadow hover:grayscale cursor-pointer"
@@ -52,7 +58,7 @@ export default function GalleriesImages() {
               </BlurFade>
             </div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Botão de voltar */}

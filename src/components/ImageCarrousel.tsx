@@ -45,13 +45,13 @@ export default function ImageCarrousel({ Images }: { Images: string[] }) {
         </button>
       </div>
 
-      {Images.length > 0 ? ( // Verifique se o array de imagens não está vazio
+      {Images.length > 0 ? (
         Images.map((image, index) => (
           <motion.img
             key={index}
             src={image} // Renderiza a imagem diretamente
             alt={`Image ${index + 1}`} // Texto alt para acessibilidade
-            className="  w-[80%] md:w-[40%]" // Torna a imagem redonda e ajusta o tamanho
+            className="  w-[80%] md:w-[40%]"
             initial="center"
             animate={positions[positionIndexes[index]]}
             variants={imageVariants}
@@ -60,7 +60,7 @@ export default function ImageCarrousel({ Images }: { Images: string[] }) {
           />
         ))
       ) : (
-        <p className="text-white">No Images available.</p> // Mensagem se não houver imagens
+        <p className="text-white">Sem Imagens Disponiveis.</p> // Mensagem se não houver imagens
       )}
 
       <div className="absolute right-0 z-10">

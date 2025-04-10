@@ -1,35 +1,44 @@
-'use client'
-import BlurFade from '@/components/ui/blur-fade'
-import { ArrowLeft, Search } from 'lucide-react'
-import React, { useState } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import Viewer from 'react-viewer'
-import { motion } from 'framer-motion'
+"use client";
+import BlurFade from "@/components/ui/blur-fade";
+import { ArrowLeft, Search } from "lucide-react";
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import Viewer from "react-viewer";
+import { motion } from "framer-motion";
+import { useParams } from "next/navigation";
+import { FlipText } from "@/components/magicui/flip-text";
 
 const images = Array.from({ length: 9 }, (_, i) => {
-  const isLandscape = i % 2 === 0
-  const width = isLandscape ? 800 : 600
-  const height = isLandscape ? 600 : 800
-  return `https://picsum.photos/seed/${i + 1}/${width}/${height}`
-})
+  const isLandscape = i % 2 === 0;
+  const width = isLandscape ? 800 : 600;
+  const height = isLandscape ? 600 : 800;
+  return `https://picsum.photos/seed/${i + 1}/${width}/${height}`;
+});
 
 export default function GalleriesImages() {
-  const [visible, setVisible] = useState(false)
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [visible, setVisible] = useState(false);
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const params = useParams();
+  const name = params.name;
 
   const openViewer = (index: number) => {
-    setCurrentIndex(index)
-    setVisible(true)
-  }
+    setCurrentIndex(index);
+    setVisible(true);
+  };
 
   const closeViewer = () => {
-    setVisible(false)
-  }
+    setVisible(false);
+  };
 
   return (
     <>
       <section id="photos" className="p-8 container relative z-0">
+        <FlipText className="text-3xl font-bold -tracking-widest my-4 uppercase text-black dark:text-white md:text-7xl md:leading-[5rem]">
+          {name}
+        </FlipText>
         <motion.div
           className="columns-2 gap-4 sm:columns-3"
           whileInView={{ opacity: 1, y: 0 }} // Animação ocorre quando entra na viewport
@@ -64,7 +73,7 @@ export default function GalleriesImages() {
       {/* Botão de voltar */}
       <div className="fixed bottom-0 left-4 md:left-12 w-full animate-fade-in">
         <Link href="/">
-          <button className="my-8 ml-auto p-4 bg-blue-500 text-white text-sm font-bold tracking-wide rounded-full focus:outline-none hover:animate-bounce">
+          <button className="my-8 ml-auto p-4 bg-[#7C5E44] text-white text-sm font-bold tracking-wide rounded-full focus:outline-none hover:animate-bounce">
             <ArrowLeft />
           </button>
         </Link>
@@ -74,9 +83,9 @@ export default function GalleriesImages() {
       <Viewer
         visible={visible}
         onClose={closeViewer}
-        images={images.map((url) => ({ src: url, alt: '' }))} // Passando as imagens para o viewer
+        images={images.map((url) => ({ src: url, alt: "" }))} // Passando as imagens para o viewer
         activeIndex={currentIndex} // Controla qual imagem está sendo exibida
       />
     </>
-  )
+  );
 }

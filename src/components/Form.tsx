@@ -1,30 +1,30 @@
-'use client'
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { FaWhatsapp, FaInstagram, FaFacebook } from 'react-icons/fa'
+"use client";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa";
 
 export default function ContatoAnimado() {
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const inputVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
-  }
+  };
 
   const submitVariants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: { opacity: 1, scale: 1 },
     exit: { opacity: 0, scale: 0.8 },
-  }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitted(true)
+    e.preventDefault();
+    setIsSubmitted(true);
 
     setTimeout(() => {
-      setIsSubmitted(false)
-    }, 2000)
-  }
+      setIsSubmitted(false);
+    }, 2000);
+  };
 
   return (
     <div className="flex flex-col lg:flex-row justify-between items-center lg:space-x-10 space-y-10 lg:space-y-0 p-8 mt-10 container">
@@ -108,7 +108,7 @@ export default function ContatoAnimado() {
 
             <motion.button
               type="submit"
-              className="w-full py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 focus:outline-none"
+              className="w-full py-2 bg-[#7C5E45] text-white rounded-lg font-semibold hover:bg-[#6B4F3A] focus:outline-none"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -131,5 +131,5 @@ export default function ContatoAnimado() {
         )}
       </motion.div>
     </div>
-  )
+  );
 }

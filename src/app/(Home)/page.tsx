@@ -7,7 +7,7 @@ import { Marquee3D } from "@/components/Marque3d";
 import SectionGalleries from "@/components/SectionGalleries";
 import Form from "@/components/Form";
 import { Marquee2d } from "@/components/marque2d";
-import { CallToAction } from "@/components/callToAction";
+import { DraggableCardComponent } from "@/components/draggableCard";
 
 export interface Gallery {
   id: number;
@@ -96,7 +96,7 @@ export default function Home() {
         viewport={{ once: true, amount: 0.2 }} // A animação só acontece uma vez, 20% visível
         transition={{ duration: 0.6 }}
       >
-        <CallToAction />
+        <DraggableCardComponent />
       </motion.section>
       {/* Reviews */}
       <motion.section
